@@ -6,7 +6,9 @@ Coded by Joan Rios i Pla @JoanRiosiPla (@_joanrios on social media).
 
 Special thanks to https://pimylifeup.com/raspberry-pi-quiz-game-buzz-controllers/ for a guide on how to use the buzz controllers with python.
 
+Sorry if the code is a bit junky, but I did this in 4 hours :)
+
 ### Features:
  - Automatic detection of USB Buzz Controllers.
  - 1 mode:
-    * Detect who pressed the red buton faster, and flash their light.
+    * Detect who pressed the red button faster, and flash their light.
