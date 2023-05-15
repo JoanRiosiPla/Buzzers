@@ -30,12 +30,16 @@ prev = 0
 
 if controller:
     while True:
-        first = controller.controller_get_first_pressed("red")
-        if time.time() - prev > 0:
-            if first != None:
-                print("First controller to press red: %d" % first)
-                controller.light_set(first, True)
-                playsound(file_path)
-                time.sleep(0)
-                controller.light_set(first, False)
-                prev = time.time()
+        try:
+            first = controller.controller_get_first_pressed("red")
+            if time.time() - prev > 0:
+                if first != None:
+                    print("First controller to press red: %d" % first)
+                    controller.light_set(first, True)
+                    playsound(file_path)
+                    time.sleep(0)
+                    controller.light_set(first, False)
+                    prev = time.time()
+        except KeyboardInterrupt:
+            print("Exiting...")
+            exit()

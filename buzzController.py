@@ -93,24 +93,29 @@ class BuzzController:
         print("Searching for Buzz controllers...")
         self.vendor_id = None
         while not self.vendor_id:
-            for d in hid.enumerate():
-                keys = list(d.keys())
-                keys.sort()
-                if "Buzz" in d["product_string"]:
-                    product_string = d["product_string"]
-                    self.vendor_id = d['vendor_id']
-                    self.product_id = d['product_id']
-                    print("Device found: %s - %s - %s" % (d["product_string"], d['vendor_id'], d['product_id']))
-                    
-                    #instantiate the device class
-                    self.hid = hid.device()
-                    #Open up the device
-                    self.hid.open(self.vendor_id, self.product_id)
-                    #Set the non blocking mode
-                    self.hid.set_nonblocking(1)
-                    #Clear the Buzz Controller LEDs
-                    self.hid.write(self.light_array)
-            time.sleep(1)
+            try:
+                for d in hid.enumerate():
+                    keys = list(d.keys())
+                    keys.sort()
+                    if "Buzz" in d["product_string"]:
+                        product_string = d["product_string"]
+                        self.vendor_id = d['vendor_id']
+                        self.product_id = d['product_id']
+                        print("Device found: %s - %s - %s" % (d["product_string"], d['vendor_id'], d['product_id']))
+                        
+                        #instantiate the device class
+                        self.hid = hid.device()
+                        #Open up the device
+                        self.hid.open(self.vendor_id, self.product_id)
+                        #Set the non blocking mode
+                        self.hid.set_nonblocking(1)
+                        #Clear the Buzz Controller LEDs
+                        self.hid.write(self.light_array)
+                time.sleep(1)
+            except KeyboardInterrupt:
+                print("Exiting...")
+                exit()
+
 
     def __init__(self):
         #Load the Buzz Controller
